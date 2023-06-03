@@ -18,7 +18,9 @@ form{
   align-items: center;
   width: 100%;
 }
-
+form:hover{
+    background-color: rgba(62, 61, 61, 0.892);
+}
 button{
   width: 28px;
   height: 25px;
@@ -48,20 +50,24 @@ align-items: center;
 margin: 20px 0px;
 border: 2px solid rgb(166, 60, 60);
 border-radius: 10px;
-padding: 5px 0px;
+padding: 5px 5px;
 width: 100%;
 background-color: transparent;
 }
+.task:hover{
+  background-color: rgba(62, 61, 61, 0.892);
+
+}
 .checkbox{
-  width: 30px;
   background-color: none;
-  height: 20px;
+  margin: 0px 4px;
 }
 .checkbox:hover{
   cursor:pointer;
 }
 .tasktext{
-  width: 300px;
+  max-width: 300px;
+  margin: 0px 4px;
 }
 .tasktext:hover{
   cursor:pointer;
@@ -81,8 +87,9 @@ background-color: transparent;
 }
 #circle-color, #circle-color-checked{
   fill:#325a95;
+  margin-right: 4px;
 }
-#square-color:hover{
+#circle-color:hover{
   cursor: pointer;
   fill:rgb(12, 138, 183)
 }
