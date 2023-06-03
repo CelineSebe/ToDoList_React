@@ -2,12 +2,10 @@
 function TaskCreation(){
     return(
 
-        <div className='TaskCreation'>
             <form>
                 <button> + </button>
-                <input type="text"/>
+                <input type="text" class='taskcreation' placeholder="Nouvelle tâche"/>
             </form>
-        </div>
         )
 }
 export default TaskCreation;
