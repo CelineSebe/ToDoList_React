@@ -24,10 +24,6 @@ function App() {
     setTasks(updatedTasks);
   };
  
-  useEffect(() => {
-    // Sauvegarde des données dans le localStorage lorsqu'il y a des changements
-    localStorage.getItem(JSON.parse(`task_${props.id}`));
-  }, []);
 
   return (
     <div>

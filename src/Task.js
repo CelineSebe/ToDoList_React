@@ -1,5 +1,7 @@
 
+
 import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Task(props){
 
@@ -14,7 +16,10 @@ export default function Task(props){
         setChecked(!checked);
       };
     
-   
+      useEffect(() => {
+        // Sauvegarde des données dans le localStorage lorsqu'il y a des changements
+        localStorage.setItem(`task_${props.id}`, JSON.stringify({ text: taskText, checked: checked}));
+      }, [taskText, checked, props.id]);
 
     return(
     <div class="task">
