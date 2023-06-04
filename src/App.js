@@ -49,7 +49,7 @@ function App() {
               checked={task.checked} 
               onUpdate={(newTaskName) => handleTaskUpdate(task.id, newTaskName)}
               />
-        ))}
+        )).reverse()}
       </div>
     </div>
   );
