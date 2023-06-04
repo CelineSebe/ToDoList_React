@@ -6,11 +6,13 @@ function TaskCreation(props){
     const handleInputChange = (event) => {
         setTaskName(event.target.value);
     }
+
     const handleFormSubmit = (e) => {
         e.preventDefault();
         props.onTaskCreate(taskName);
         setTaskName('');
     }
+
     return(
 
             <form onSubmit={handleFormSubmit}>
@@ -23,4 +25,5 @@ function TaskCreation(props){
             </form>
         )
 }
+
 export default TaskCreation;

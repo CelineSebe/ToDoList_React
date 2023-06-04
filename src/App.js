@@ -4,6 +4,7 @@ import './App.css';
 import { useState,useEffect} from 'react';
 
 function App() {
+
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
@@ -21,10 +22,12 @@ function App() {
   const handleTaskCreate = (taskName) => {
     const newTask = {
       id: Date.now(),
-      name: taskName
+      name: taskName, 
+      checked: false,
     };
     setTasks([...tasks, newTask]);
   }
+
   const handleTaskUpdate = (taskId, newTaskName) => {
     const updatedTasks = tasks.map((task) => {
       if (task.id === taskId) {
@@ -35,17 +38,17 @@ function App() {
     setTasks(updatedTasks);
   };
 
-
   return (
     <div>
       <div className='todoapp'>
         <TaskCreation onTaskCreate={handleTaskCreate}/>
         {tasks.map(task => (
-        <Task id={task.id}
-              name={task.name} 
+        <Task key={task.id}
+              id={task.id}
+              name={task.name}
+              checked={task.checked} 
               onUpdate={(newTaskName) => handleTaskUpdate(task.id, newTaskName)}
               />
-              
         ))}
       </div>
     </div>

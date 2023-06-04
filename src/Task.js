@@ -1,12 +1,10 @@
-
-
 import { useState } from "react";
 import { useEffect } from "react";
 
 export default function Task(props){
 
     const [taskText, setTaskText] = useState(props.name);
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(props.checked);
 
     const handleInputChange = (event) => {
       setTaskText(event.target.value);
@@ -15,17 +13,16 @@ export default function Task(props){
     const handleCheckcircleChange = () => {
         setChecked(!checked);
       };
-    const HandleSurlign = () => {
 
-    }
-      const handleDeleteTask = () => {
-        // Supprimer la tâche du localStorage
-        localStorage.removeItem(`task_${props.id}`);
-      };
-      useEffect(() => {
-        // Sauvegarde des données dans le localStorage lorsqu'il y a des changements
-        localStorage.setItem(`task_${props.id}`, JSON.stringify({ text: taskText, checked}));
-      }, [taskText, checked, props.id]);
+    const handleDeleteTask = () => {
+    // Supprimer la tâche du localStorage
+    localStorage.removeItem(`task_${props.id}`);
+    };
+   
+    useEffect(() => {
+    // Sauvegarde des données dans le localStorage lorsqu'il y a des changements
+    localStorage.setItem(`task_${props.id}`, JSON.stringify({ text: taskText, checked}));
+    }, [taskText, checked, props.id]);
 
     return(
     <div class="task">
