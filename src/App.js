@@ -6,6 +6,17 @@ import { useState,useEffect} from 'react';
 function App() {
   const [tasks, setTasks] = useState([]);
 
+  useEffect(() => {
+    // Récupération des données du localStorage lors du chargement de l'application
+    const savedTasks = Object.keys(localStorage)
+      .filter((key) => key.startsWith('task_'))
+      .map((key) => {
+        const taskId = key.substring(5);
+        const taskData = JSON.parse(localStorage.getItem(key));
+        return { id: taskId, name: taskData.text, checked: taskData.checked };
+      });
+    setTasks(savedTasks);
+  }, []);
 
   const handleTaskCreate = (taskName) => {
     const newTask = {
@@ -23,19 +34,20 @@ function App() {
     });
     setTasks(updatedTasks);
   };
- 
+
 
   return (
     <div>
-    <div className='todoapp'>
-      <TaskCreation onTaskCreate={handleTaskCreate}/>
-      {tasks.map(task => (
-      <Task key={task.id}
-            id={task.id}
-            name={task.name} 
-            onUpdate={(newTaskName) => handleTaskUpdate(task.id, newTaskName)} />
-      ))}
-    </div>
+      <div className='todoapp'>
+        <TaskCreation onTaskCreate={handleTaskCreate}/>
+        {tasks.map(task => (
+        <Task id={task.id}
+              name={task.name} 
+              onUpdate={(newTaskName) => handleTaskUpdate(task.id, newTaskName)}
+              />
+              
+        ))}
+      </div>
     </div>
   );
 }
