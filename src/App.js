@@ -1,10 +1,12 @@
 import TaskCreation from './TaskCreation';
 import Task from './Task';
 import './App.css';
-import { useState } from 'react';
+import { useState,useEffect} from 'react';
 
 function App() {
   const [tasks, setTasks] = useState([]);
+
+
   const handleTaskCreate = (taskName) => {
     const newTask = {
       id: Date.now(),
@@ -21,14 +23,20 @@ function App() {
     });
     setTasks(updatedTasks);
   };
+ 
+  useEffect(() => {
+    // Sauvegarde des données dans le localStorage lorsqu'il y a des changements
+    localStorage.getItem(JSON.parse(`task_${props.id}`));
+  }, []);
+
   return (
     <div>
     <div className='todoapp'>
       <TaskCreation onTaskCreate={handleTaskCreate}/>
       {tasks.map(task => (
-      <Task key={task.id} 
+      <Task key={task.id}
+            id={task.id}
             name={task.name} 
-            initialText={task.name}
             onUpdate={(newTaskName) => handleTaskUpdate(task.id, newTaskName)} />
       ))}
     </div>
