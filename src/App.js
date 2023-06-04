@@ -1,7 +1,10 @@
 import TaskCreation from './TaskCreation';
 import Task from './Task';
+import Taskdescription from './Taskdescription';
 import './App.css';
 import { useState,useEffect} from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 
 function App() {
 
@@ -39,7 +42,7 @@ function App() {
   };
 
   return (
-    <div>
+    <Router>
       <div className='todoapp'>
         <TaskCreation onTaskCreate={handleTaskCreate}/>
         {tasks.map(task => (
@@ -50,8 +53,11 @@ function App() {
               onUpdate={(newTaskName) => handleTaskUpdate(task.id, newTaskName)}
               />
         )).reverse()}
+        <Routes>
+          <Route path="/task/:id" element={<Taskdescription />}/>
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 
