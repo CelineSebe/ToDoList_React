@@ -1,6 +1,6 @@
 import TaskCreation from './TaskCreation';
 import Task from './Task';
-import Taskdescription from './Taskdescription';
+import TaskCreationDescription from './TaskCreationdescription';
 import './App.css';
 import { useState,useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -27,6 +27,7 @@ function App() {
       id: Date.now(),
       name: taskName, 
       checked: false,
+
     };
     setTasks([...tasks, newTask]);
   }
@@ -52,9 +53,12 @@ function App() {
               checked={task.checked} 
               onUpdate={(newTaskName) => handleTaskUpdate(task.id, newTaskName)}
               />
-        )).reverse()}
+        )).reverse()
+        }
         <Routes>
-          <Route path="/task/:id" element={<Taskdescription />}/>
+          <Route path="/task/:id" element={<TaskCreationDescription/>}/>
+          
+          {/* <Route path="/"><button>Retour</button></Route> */}
         </Routes>
       </div>
     </Router>
